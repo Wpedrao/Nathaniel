@@ -1,9 +1,18 @@
+"""
+      Nathaniel Azzolini Pedrão
+      Desenvolvimento de Sistemas
+      Raciocinio Computacional
+"""
 from termcolor import colored
 from time import sleep
 import random
 
 
 def cria_dado(cor, quantidade):
+    """
+    Função responsavel pela criação dos dados com os paramentro cor
+    e quantidade de dados da cor definida
+    """
     Dado = []
     if cor == "green":
         for contador_cd in range(quantidade):
@@ -31,11 +40,22 @@ def cria_dado(cor, quantidade):
 
 
 def apaga_dado(dado_sorteado):
+    """
+     Função responsavel pela remoção da sacola do dado sorteado
+     informar o dado que foi sorteado
+     """
     bag.remove(dado_sorteado)
     return
 
 
 def sorteia_dado(quantidade, dados_relancaveis_l):
+    """
+     Função responsavel pelo sorteio dos dados, pegar da sacola,
+     com o reaproveitamento dos dados marcados como relançaveis
+     Informar a quantidade de dados a serem lançados e o conjunto de
+     dados relançaveis
+     Retorna o conjunto de dados a serem laçados
+     """
     dado_coletado = []
     reutilizados = 0
 
@@ -62,6 +82,10 @@ def sorteia_dado(quantidade, dados_relancaveis_l):
 
 
 def lanca_dado(dados):
+    """
+      Função responsavel pelo lançamento dos dados e alimenta os resultados
+      Retorna o conjunto as faces dos dados lançados
+    """
     sorteados = []
     for dado in dados:
         face_sorteada = (random.choice(dado[1]))
@@ -71,6 +95,9 @@ def lanca_dado(dados):
 
 
 def inicializa_dados():
+    """
+      Função responsavel pela criação dos dados
+    """
     bag = []
     cria_dado("green", 6)
     cria_dado("yellow", 4)
@@ -79,6 +106,12 @@ def inicializa_dados():
 
 
 def mostra_resultado(dados_jogogados):
+    """
+       Função responsavel por imprimir o resultado do lançamento dos dados
+       recebe como parametro o resultado do lançamento imprimi resultado e
+       acumula se existirem dados as serem relançados
+
+     """
     relancaveis = []
     for dado in dados_jogogados:
         if dado[0] == "green":
@@ -97,6 +130,12 @@ def mostra_resultado(dados_jogogados):
 
 
 def atualiza_resultado(r_jogador, dados_jogogados):
+    """
+       Função responsavel por atualizar o placar geral dos jogadores
+       recebendo os dados da jogada e nome do jogador
+       Verifica se o jogador morreu, e se jogador atingiu 13 pontos e ganhou o jogo
+       retorna o placar do jogador atualizado
+     """
     for dado in dados_jogogados:
         if dado[1] == "T":
             r_jogador[1] += 1
@@ -115,6 +154,12 @@ def atualiza_resultado(r_jogador, dados_jogogados):
 
 
 def continuar_lancar(jogador_l):
+    """
+       Função responsavel pela solicitação de continuidade de lançamentos dentro
+       do turno do jogador
+       Retorna 0 quando passa a vez
+       Rerona 1 quando vai continuar
+     """
     while True:
         resposta = input("Lançar novamente " + jogador_l + " (s/n):")
         print("*" * 10)
@@ -132,6 +177,9 @@ def continuar_lancar(jogador_l):
 
 
 def placar(jogadores_local):
+    """
+       Função responsavel por mostrar o placar geral da partida recebe jogadores
+    """
     print("JOGADOR        Tiros    Celebros")
     for jogador_l in jogadores_local:
         nome_jogador = jogador_l[0] + "            "
@@ -139,8 +187,10 @@ def placar(jogadores_local):
     return
 
 
+# Inicialização do programa
 # Entrada dos usuarios
 bag = []
+
 print(colored('Bem vindos ao Zombie Dice!!!', 'green'))
 
 while True:
